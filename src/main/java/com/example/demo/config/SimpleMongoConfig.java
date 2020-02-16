@@ -38,15 +38,4 @@ public class SimpleMongoConfig implements WebMvcConfigurer {
     }
 
 
-    /**
-    @Bean
-    public MongoClient mongo() {
-        return new MongoClient("localhost");
-    }
-
-    @Bean
-    public MongoTemplate mongoTemplate() throws Exception {
-        return new MongoTemplate(mongo(), "test");
-    }
-    **/
 }
