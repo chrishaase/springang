@@ -1,32 +1,27 @@
 package com.example.demo.domain;
 
-import java.time.LocalDate;
-import java.util.*;
-
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 @Document(collection = "books")
-public class Book {
+public class BookNew {
 
 
-    @Id
-    private ObjectId _id;
+    private String _id;
     private String isbn;
     private String title;
     private String subtitle;
     private String numPages;
     private String author;
     private String cover;
-    @Field("abstract")
     private String abstract1;
-    private Publisher publisher;
+    private Book.Publisher publisher;
 
-    public Book(){}
+    public BookNew(){}
 
-    public Book(ObjectId _id, String abstract1, String isbn, String title, String subtitle, String numPages, String author, String cover, Publisher publisher){
+    public BookNew(String _id, String abstract1, String isbn, String title, String subtitle, String numPages, String author, String cover, Book.Publisher publisher){
         this._id = _id;
         this.author = author;
         this.isbn = isbn;
@@ -41,10 +36,10 @@ public class Book {
     }
 
     public String get_id() {
-        return _id.toHexString();
+        return _id;
     }
 
-    public void set_id(ObjectId _id) {
+    public void set_id(String _id) {
         this._id = _id;
     }
 
@@ -104,24 +99,15 @@ public class Book {
         this.cover = cover;
     }
 
-    public Publisher getPublisher() {
+    public Book.Publisher getPublisher() {
         return publisher;
     }
 
-    public void setPublisher(Publisher publisher) {
+    public void setPublisher(Book.Publisher publisher) {
         this.publisher = publisher;
     }
 
-    public static class Publisher {
-        public String name;
-        public String url;
 
-        public Publisher( String name, String url ) {
-            this.name = name;
-            this.url = url;
-        }
-
-    }
 }
 
 

@@ -22,7 +22,7 @@ public class DemoApplication implements ErrorController {
 
 	@RequestMapping(value = PATH)
 	public String error() {
-		return "redirect:/index.html";
+		return "redirect:/";
 	}
 
 	@Override
