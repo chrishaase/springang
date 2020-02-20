@@ -5,6 +5,7 @@ import java.util.*;
 
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.TextIndexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
@@ -14,14 +15,20 @@ public class Book {
 
     @Id
     private ObjectId _id;
+    @TextIndexed
     private String isbn;
+    @TextIndexed
     private String title;
+    @TextIndexed
     private String subtitle;
     private String numPages;
+    @TextIndexed
     private String author;
     private String cover;
     @Field("abstract")
+    @TextIndexed
     private String abstract1;
+    @TextIndexed
     private Publisher publisher;
 
     public Book(){}
@@ -113,7 +120,9 @@ public class Book {
     }
 
     public static class Publisher {
+        @TextIndexed
         public String name;
+        @TextIndexed
         public String url;
 
         public Publisher( String name, String url ) {

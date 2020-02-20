@@ -5,10 +5,12 @@ import com.example.demo.repositories.BookRepository;
 import com.example.demo.domain.Book;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.query.TextCriteria;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -52,6 +54,21 @@ class BookController {
     @DeleteMapping("/books/{id}")
     public void delete(@PathVariable("id") String id){
         repo.deleteByIsbn(id);
+    }
+
+    @GetMapping("/books/fulltext/{term}")
+    public List<Book> findBooks(@PathVariable("term") String term){
+        TextCriteria search = TextCriteria.forDefaultLanguage().matching(term);
+        return repo.findAllBy(search);
+    }
+
+    @GetMapping("/books/regex/{term}")
+    public List<Book> findBookByRegexp(@PathVariable("term") String term){
+        if (term == "") {
+            term = " ";
+        }
+        return repo.findBooksByRegexp(term);
+
     }
 
 

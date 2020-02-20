@@ -18,11 +18,12 @@ public class DemoApplication implements ErrorController {
 		SpringApplication.run(DemoApplication.class, args);
 	}
 
+
 	private static final String PATH = "/error";
 
 	@RequestMapping(value = PATH)
 	public String error() {
-		return "redirect:https://spring-268410.appspot.com/";
+		return "redirect:/";
 	}
 
 	@Override
