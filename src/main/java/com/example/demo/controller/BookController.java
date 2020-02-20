@@ -62,14 +62,23 @@ class BookController {
         return repo.findAllBy(search);
     }
 
-    @GetMapping("/books/regex/{term}")
-    public List<Book> findBookByRegexp(@PathVariable("term") String term){
-        if (term == "") {
-            term = " ";
-        }
+//    @GetMapping("/books/regex/{term}")
+//    public List<Book> findBookByRegexp(@PathVariable("term") String term){
+//        if (term == "") {
+//            term = "xyz";
+//        }
+//        return repo.findBooksByRegexp(term);
+//
+//    }
+
+    @GetMapping("/books/regex")
+    public List<Book> findBookByRegexp(@RequestParam(value="term", defaultValue = " ") String term){
+
         return repo.findBooksByRegexp(term);
 
     }
+
+
 
 
 }

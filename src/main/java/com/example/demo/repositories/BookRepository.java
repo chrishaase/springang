@@ -16,7 +16,8 @@ public interface BookRepository extends MongoRepository<Book,String> {
 
     List<Book> findAllBy(TextCriteria criteria);
 
-    @Query("{$or: [{'publisher.name': {$regex: ?0}}, {'publisher.url': {$regex: ?0}}, { 'author' : { $regex: ?0 }}, { 'title' : { $regex: ?0 }}, { 'subtitle' : { $regex: ?0 }}, { 'abstract' : { $regex: ?0 }} ] }")
+    @Query("{$or: [{'publisher.name': {$regex: ?0, $options: 'i'}}, {'publisher.url': {$regex: ?0, $options: 'i'}}, { 'author' : { $regex: ?0, $options: 'i' }}, " +
+            "{ 'title' : { $regex: ?0, $options: 'i'}}, { 'subtitle' : { $regex: ?0, $options: 'i' }}, { 'abstract' : { $regex: ?0, $options: 'i' }} ] }")
     List<Book> findBooksByRegexp(String regexp);
 
 
