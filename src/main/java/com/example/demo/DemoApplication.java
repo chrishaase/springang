@@ -23,7 +23,7 @@ public class DemoApplication implements ErrorController {
 
 	@RequestMapping(value = PATH)
 	public String error() {
-		return "redirect:/";
+		return "redirect:https://spring-268410.appspot.com/";
 	}
 
 	@Override
