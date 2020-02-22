@@ -5,6 +5,8 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
+import java.util.List;
+
 @Document(collection = "books")
 public class BookNew {
 
@@ -18,10 +20,12 @@ public class BookNew {
     private String cover;
     private String abstract1;
     private Book.Publisher publisher;
+    private List<String> keywords;
 
     public BookNew(){}
 
-    public BookNew(String _id, String abstract1, String isbn, String title, String subtitle, String numPages, String author, String cover, Book.Publisher publisher){
+    public BookNew(String _id, String abstract1, String isbn, String title, String subtitle, String numPages, String author,
+                   String cover, Book.Publisher publisher, List<String> keywords){
         this._id = _id;
         this.author = author;
         this.isbn = isbn;
@@ -31,8 +35,16 @@ public class BookNew {
         this.cover = cover;
         this.publisher = publisher;
         this.abstract1 = abstract1;
+        this.keywords = keywords;
 
+    }
 
+    public List<String> getKeywords() {
+        return keywords;
+    }
+
+    public void setKeywords(List<String> keywords) {
+        this.keywords = keywords;
     }
 
     public String get_id() {

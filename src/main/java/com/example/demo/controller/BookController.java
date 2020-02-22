@@ -37,9 +37,9 @@ class BookController {
     public void addBook(@RequestBody BookNew bookNew) {
         // check if book has valid Id - if not add one
         // probably needs bookDTO
-
+        System.out.println(bookNew.getKeywords());
         Book book = new Book(ObjectId.get(), bookNew.getAbstract1(), bookNew.getIsbn(), bookNew.getTitle(),
-                bookNew.getSubtitle(), bookNew.getNumPages(), bookNew.getAuthor(), bookNew.getCover(), bookNew.getPublisher());
+                bookNew.getSubtitle(), bookNew.getNumPages(), bookNew.getAuthor(), bookNew.getCover(), bookNew.getPublisher(), bookNew.getKeywords());
 
         System.out.println(book.get_id());
         repo.save(book);

@@ -30,10 +30,11 @@ public class Book {
     private String abstract1;
     @TextIndexed
     private Publisher publisher;
+    private List<String> keywords;
 
     public Book(){}
 
-    public Book(ObjectId _id, String abstract1, String isbn, String title, String subtitle, String numPages, String author, String cover, Publisher publisher){
+    public Book(ObjectId _id, String abstract1, String isbn, String title, String subtitle, String numPages, String author, String cover, Publisher publisher, List<String> keywords){
         this._id = _id;
         this.author = author;
         this.isbn = isbn;
@@ -43,8 +44,17 @@ public class Book {
         this.cover = cover;
         this.publisher = publisher;
         this.abstract1 = abstract1;
+        this.keywords = keywords;
 
 
+    }
+
+    public List<String> getKeywords() {
+        return keywords;
+    }
+
+    public void setKeywords(List<String> keywords) {
+        this.keywords = keywords;
     }
 
     public String get_id() {
