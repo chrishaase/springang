@@ -1,31 +1,40 @@
-package com.example.demo.domain;
+package com.example.demo.persistence.model;
+
+import java.time.LocalDate;
+import java.util.*;
 
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.TextIndexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
-import java.util.List;
-
 @Document(collection = "books")
-public class BookNew {
+public class Book {
 
 
-    private String _id;
+    @Id
+    private ObjectId _id;
+    @TextIndexed
     private String isbn;
+    @TextIndexed
     private String title;
+    @TextIndexed
     private String subtitle;
     private String numPages;
+    @TextIndexed
     private String author;
     private String cover;
+    @Field("abstract")
+    @TextIndexed
     private String abstract1;
-    private Book.Publisher publisher;
+    @TextIndexed
+    private Publisher publisher;
     private List<String> keywords;
 
-    public BookNew(){}
+    public Book(){}
 
-    public BookNew(String _id, String abstract1, String isbn, String title, String subtitle, String numPages, String author,
-                   String cover, Book.Publisher publisher, List<String> keywords){
+    public Book(ObjectId _id, String abstract1, String isbn, String title, String subtitle, String numPages, String author, String cover, Publisher publisher, List<String> keywords){
         this._id = _id;
         this.author = author;
         this.isbn = isbn;
@@ -36,6 +45,7 @@ public class BookNew {
         this.publisher = publisher;
         this.abstract1 = abstract1;
         this.keywords = keywords;
+
 
     }
 
@@ -48,10 +58,12 @@ public class BookNew {
     }
 
     public String get_id() {
-        return _id;
+        return _id.toHexString();
     }
 
-    public void set_id(String _id) {
+    public ObjectId get_id_Obj() {return this._id;}
+
+    public void set_id(ObjectId _id) {
         this._id = _id;
     }
 
@@ -111,15 +123,26 @@ public class BookNew {
         this.cover = cover;
     }
 
-    public Book.Publisher getPublisher() {
+    public Publisher getPublisher() {
         return publisher;
     }
 
-    public void setPublisher(Book.Publisher publisher) {
+    public void setPublisher(Publisher publisher) {
         this.publisher = publisher;
     }
 
+    public static class Publisher {
+        @TextIndexed
+        public String name;
+        @TextIndexed
+        public String url;
 
+        public Publisher( String name, String url ) {
+            this.name = name;
+            this.url = url;
+        }
+
+    }
 }
 
 

@@ -1,6 +1,6 @@
-package com.example.demo.repositories;
+package com.example.demo.persistence.repository;
 
-import com.example.demo.domain.Book;
+import com.example.demo.persistence.model.Book;
 import org.springframework.data.mongodb.core.query.TextCriteria;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;

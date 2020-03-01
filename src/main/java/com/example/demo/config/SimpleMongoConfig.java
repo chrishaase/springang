@@ -14,7 +14,7 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
-public class SimpleMongoConfig implements WebMvcConfigurer {
+public class SimpleMongoConfig {
 
     @Autowired
     private Environment env;
@@ -32,10 +32,7 @@ public class SimpleMongoConfig implements WebMvcConfigurer {
 
     }
 
-    @Override
-    public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/api/**").allowedMethods("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS");
-    }
+
 
 
 }

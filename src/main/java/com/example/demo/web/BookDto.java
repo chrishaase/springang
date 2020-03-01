@@ -1,40 +1,29 @@
-package com.example.demo.domain;
+package com.example.demo.web;
 
-import java.time.LocalDate;
-import java.util.*;
-
-import org.bson.types.ObjectId;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.index.TextIndexed;
+import com.example.demo.persistence.model.Book;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.Field;
+
+import java.util.List;
 
 @Document(collection = "books")
-public class Book {
+public class BookDto {
 
 
-    @Id
-    private ObjectId _id;
-    @TextIndexed
+    private String _id;
     private String isbn;
-    @TextIndexed
     private String title;
-    @TextIndexed
     private String subtitle;
     private String numPages;
-    @TextIndexed
     private String author;
     private String cover;
-    @Field("abstract")
-    @TextIndexed
     private String abstract1;
-    @TextIndexed
-    private Publisher publisher;
+    private Book.Publisher publisher;
     private List<String> keywords;
 
-    public Book(){}
+    public BookDto(){}
 
-    public Book(ObjectId _id, String abstract1, String isbn, String title, String subtitle, String numPages, String author, String cover, Publisher publisher, List<String> keywords){
+    public BookDto(String _id, String abstract1, String isbn, String title, String subtitle, String numPages, String author,
+                   String cover, Book.Publisher publisher, List<String> keywords){
         this._id = _id;
         this.author = author;
         this.isbn = isbn;
@@ -45,7 +34,6 @@ public class Book {
         this.publisher = publisher;
         this.abstract1 = abstract1;
         this.keywords = keywords;
-
 
     }
 
@@ -58,10 +46,10 @@ public class Book {
     }
 
     public String get_id() {
-        return _id.toHexString();
+        return _id;
     }
 
-    public void set_id(ObjectId _id) {
+    public void set_id(String _id) {
         this._id = _id;
     }
 
@@ -121,26 +109,15 @@ public class Book {
         this.cover = cover;
     }
 
-    public Publisher getPublisher() {
+    public Book.Publisher getPublisher() {
         return publisher;
     }
 
-    public void setPublisher(Publisher publisher) {
+    public void setPublisher(Book.Publisher publisher) {
         this.publisher = publisher;
     }
 
-    public static class Publisher {
-        @TextIndexed
-        public String name;
-        @TextIndexed
-        public String url;
 
-        public Publisher( String name, String url ) {
-            this.name = name;
-            this.url = url;
-        }
-
-    }
 }
 
 
